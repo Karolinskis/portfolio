@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Card from "./components/Card";
 
+import HeroContainer from "./components/sections/hero";
+import DiscordProfileCard from "./components/DiscordProfileCard";
+
 let projects = [
   {
     imageLink: "/IT-sponsor.png",
@@ -22,24 +25,9 @@ let projects = [
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold mt-2">Projects</h1>
-      <p className="text-lg mb-8">
-        Here are some of the projects I've worked on recently.
-      </p>
-
-      <hr className="w-1/2 mb-8" />
-
-      {projects.map((project, index) => (
-        <Card
-          key={index}
-          imageLink={project.imageLink}
-          title={project.title}
-          description={project.description}
-          technologies={project.technologies}
-          link={project.link}
-        />
-      ))}
+    <main className="flex flex-col h-full mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 space-y-10 pb-8 justify-center">
+      <HeroContainer />
+      {/* <DiscordProfileCard userID={process.env.NEXT_PUBLIC_DISCORD_USER_ID} /> */}
     </main>
   );
 }
