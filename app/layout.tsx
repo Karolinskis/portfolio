@@ -34,10 +34,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
-          <div className="flex justify-center mb-16">
+          <div className="flex justify-center">
             <Navbar />
           </div>
-          {children}
+          <main className="mt-8">{children}</main>
         </Providers>
         <Analytics />
         <SpeedInsights />
