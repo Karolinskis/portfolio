@@ -32,12 +32,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} min-h-screen`}>
         <Providers>
-          <div className="flex justify-center">
+          <div className="flex justify-center mb-20">
             <Navbar />
           </div>
-          <main className="mt-8">{children}</main>
+          <main>{children}</main>
         </Providers>
         <Analytics />
         <SpeedInsights />
