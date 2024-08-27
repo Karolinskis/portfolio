@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { ThemeProvider } from "@/app/components/theme-provider";
+import { Providers } from "./components/theme-provider";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 
@@ -21,12 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <Providers>
           <div className="flex justify-center mb-16">
             <Navbar />
           </div>
           {children}
-        </ThemeProvider>
+        </Providers>
         <Analytics />
         <SpeedInsights />
       </body>

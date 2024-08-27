@@ -25,13 +25,11 @@ export default function HeroContainer() {
     return age;
   }
 
-  const age = calculateAge("2002-12-12");
-
   return (
     <section id="hero" className="sm:flex gap-8 space-y-4 sm:space-y-0 z-10">
       <div className="max-w-3xl space-y-4 font-semibold not-italic leading-9 tracking-tighter flex-grow">
         <h1 className="text-4xl text-black dark:text-white">Hi, I'm Karolis</h1>
-        <h2 className="text-2xl text-gray-200 dark:gray-500">
+        <h2 className="text-2xl text-gray-600 dark:text-gray-400">
           I'm a <Age />
           -year-old Software Engineer mainly focused on backend development.
         </h2>
