@@ -5,7 +5,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <div className="z-[999] fixed max-w-6xl md:w-2/4 xs:flex flex-row justify-between items-center px-4 py-2 mt-4 md:mt-6 rounded-md bg-white/60 dark:bg-[#12181d]/60 border border-slate-800/50 backdrop-blur-lg">
+    <div className="z-[999] fixed max-w-4xl w-full xs:flex flex-row justify-between items-center px-4 py-2 mt-4 md:mt-6 rounded-md bg-white/60 dark:bg-[#12181d]/60 border border-slate-800/50 backdrop-blur-lg">
       <div className="flex flex-row items-center gap-2 w-full">
         {/* FIXME */}
         <ThemeToggle />
