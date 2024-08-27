@@ -1,4 +1,9 @@
+import { Metadata } from "next";
 import DiscordProfileCard from "../components/DiscordProfileCard";
+
+export const metadata: Metadata = {
+  title: "Contact",
+};
 
 export default function Contact() {
   return (
