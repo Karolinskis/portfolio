@@ -9,7 +9,7 @@ import {
 } from "@/app/components/ui/tooltip";
 import DiscordGameIcon from "@/public/discord-game-icon.svg";
 import * as DiscordTypes from "@/types/discord";
-import * as DiscordUtils from "@/utils/discord";
+import * as DiscordUtils from "@/app/lib/discord";
 import Link from "next/link";
 
 const formatTime = (milliseconds: number) => {
