@@ -28,7 +28,7 @@ export default function HeroContainer() {
   return (
     <section id="hero" className="sm:flex gap-8 space-y-4 sm:space-y-0 z-10">
       <div className="max-w-3xl space-y-4 font-semibold not-italic leading-9 tracking-tighter flex-grow">
-        <h1 className="text-4xl text-black dark:text-white">Hi, I'm Karolis</h1>
+        <h1 className="text-5xl text-black dark:text-white">Hi, I'm Karolis</h1>
         <h2 className="text-2xl text-gray-600 dark:text-gray-400">
           I'm a <Age />
           -year-old Software Engineer mainly focused on backend development.
@@ -68,7 +68,9 @@ function Age() {
     <TooltipProvider delayDuration={100}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <span>{age.toFixed(2)}</span>
+          <span className="bg-gray-400 bg-opacity-30 px-2 py-1 rounded-md hover:bg-gray-200 cursor-pointer transition-colors duration-300">
+            {age.toFixed(2)}
+          </span>
         </TooltipTrigger>
         <TooltipContent className="text-center max-w-[250px]" side="right">
           <span>{age.toFixed(9)}</span>
