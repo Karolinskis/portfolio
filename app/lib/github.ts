@@ -49,6 +49,7 @@ export const fetchPinnedRepositories = async () => {
               description
               url
               stargazerCount
+              forkCount
               primaryLanguage {
                 name
                 color
