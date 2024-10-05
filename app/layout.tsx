@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     template: "%s • Karolis",
     default: "Karolis",
   },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Karolis",
+  },
   description:
     "Hi, I'm Karolis. I'm a 23-year-old Software Engineer mainly focused on backend development.",
   applicationName: "Karolis' portfolio",
