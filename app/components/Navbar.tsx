@@ -1,19 +1,20 @@
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "./ui/button";
+import { HiHome } from "react-icons/hi2";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
 export default function Navbar() {
   return (
     <div className="z-[999] fixed max-w-4xl w-full xs:flex flex-row justify-between items-center px-4 py-2 top-3 rounded-md bg-white/60 dark:bg-[#12181d]/60 border border-slate-800/50 backdrop-blur-lg">
       <div className="flex flex-row items-center gap-2 w-full">
-        <ThemeToggle />
         <Link href="/">
           <Button
             variant={"outline"}
             className="hover:bg-gray-400 transition-colors duration-300"
+            size={"icon"}
           >
-            Home
+            <HiHome className="text-2xl" />
           </Button>
         </Link>
         <Link href={"/contact"}>
@@ -24,7 +25,10 @@ export default function Navbar() {
             Contact
           </Button>
         </Link>
-        <a href="https://github.com/Karolinskis" className="ml-auto">
+        <div className="ml-auto">
+          <ThemeToggle />
+        </div>
+        {/* <a href="https://github.com/Karolinskis" className="ml-auto">
           <Button
             variant={"outline"}
             size={"icon"}
@@ -50,7 +54,7 @@ export default function Navbar() {
           >
             <FiMail className="text-2xl" />
           </Button>
-        </a>
+        </a> */}
       </div>
     </div>
   );
