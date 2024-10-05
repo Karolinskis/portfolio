@@ -66,6 +66,7 @@ export default function Contributions() {
               key={year}
               onClick={() => setCalendarYear(year)}
               variant={"outline"}
+              className="hover:bg-gray-400 transition-colors duration-300"
             >
               {year}
             </Button>
