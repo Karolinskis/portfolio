@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "./components/theme-provider";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,12 +33,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-screen`}>
+      <body className={`${inter.className} min-h-screen flex flex-col`}>
         <Providers>
           <div className="flex justify-center mb-20">
             <Navbar />
           </div>
-          <main>{children}</main>
+          <main className="flex-grow">{children}</main>
+          <div className="mt-auto">
+            <Footer />
+          </div>
         </Providers>
         <Analytics />
         <SpeedInsights />
