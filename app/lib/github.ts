@@ -39,8 +39,6 @@ export const fetchPinnedRepositories = async () => {
     },
   });
 
-  console.log(token);
-
   const query = gql`
     {
       viewer {
