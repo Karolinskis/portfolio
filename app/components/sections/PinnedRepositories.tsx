@@ -32,12 +32,12 @@ export default function PinnedRepositories() {
                   {repo.description}
                 </p>
               </div>
-              <div className="flex justify-between items-center mt-4">
-                <p>{repo.primaryLanguage?.name}</p>
+              <div className="flex justify-start items-center mt-4">
                 <span
-                  className="inline-block w-4 h-4 rounded-full"
+                  className="inline-block w-4 h-4 rounded-full mr-2"
                   style={{ backgroundColor: repo.primaryLanguage?.color }}
                 ></span>
+                <p>{repo.primaryLanguage?.name}</p>
               </div>
             </div>
           </a>
