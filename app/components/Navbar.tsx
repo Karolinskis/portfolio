@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "./ui/button";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
 export default function Navbar() {
   return (
@@ -9,24 +9,46 @@ export default function Navbar() {
       <div className="flex flex-row items-center gap-2 w-full">
         <ThemeToggle />
         <Link href="/">
-          <Button variant={"outline"}>Home</Button>
+          <Button
+            variant={"outline"}
+            className="hover:bg-gray-400 transition-colors duration-300"
+          >
+            Home
+          </Button>
         </Link>
         <Link href={"/contact"}>
-          <Button variant={"outline"}>Contact</Button>
+          <Button
+            variant={"outline"}
+            className="hover:bg-gray-400 transition-colors duration-300"
+          >
+            Contact
+          </Button>
         </Link>
         <a href="https://github.com/Karolinskis" className="ml-auto">
-          <Button variant={"outline"} size={"icon"}>
-            <Github />
+          <Button
+            variant={"outline"}
+            size={"icon"}
+            className="hover:bg-gray-400 transition-colors duration-300"
+          >
+            <FiGithub className="text-2xl" />
           </Button>
         </a>
         <a href="https://www.linkedin.com/in/karolis-paulavicius/">
-          <Button variant={"outline"} size={"icon"}>
-            <Linkedin />
+          <Button
+            variant={"outline"}
+            size={"icon"}
+            className="hover:bg-gray-400 transition-colors duration-300"
+          >
+            <FiLinkedin className="text-2xl" />
           </Button>
         </a>
         <a target="_blank" href="mailto:karolis.paulavicius2002@gmail.com">
-          <Button variant={"outline"} size={"icon"}>
-            <Mail />
+          <Button
+            variant={"outline"}
+            size={"icon"}
+            className="hover:bg-gray-400 transition-colors duration-300"
+          >
+            <FiMail className="text-2xl" />
           </Button>
         </a>
       </div>
