@@ -31,7 +31,7 @@ export default function Contributions() {
           Contributions
         </h2>
         <div className="flex xl:flex-row flex-col gap-4">
-          <div className="border dark:border-zinc-800 border-zinc-200 p-8 rounded-lg max-w-fit max-h-fit">
+          <div className="border dark:border-gray-700 border-gray-200 shadow p-8 rounded-lg max-w-fit max-h-fit">
             <GitHubCalendar
               username="unknown"
               loading={true}
@@ -52,7 +52,7 @@ export default function Contributions() {
       </h2>
 
       <div className="flex flex-col gap-4">
-        <div className="border dark:border-zinc-800 border-zinc-200 p-8 rounded-lg max-w-full max-h-fit">
+        <div className="border dark:border-gray-700 border-gray-200 shadow p-8 rounded-lg max-w-fit max-h-fit">
           <GitHubCalendar
             username={username}
             year={calendarYear}
