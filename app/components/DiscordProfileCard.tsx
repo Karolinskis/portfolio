@@ -73,8 +73,8 @@ function DiscordProfileCard({ userID }: { userID: string | undefined }) {
   if (!discordUser) return null;
 
   return (
-    <div className="dark:bg-gradient-to-r dark:from-neutral-800 dark:to-zinc-800 bg-gradient-to-r from-neutral-200 to-zinc-200 rounded-lg shadow-xl p-4 flex justify-between gap-2 max-w-md">
-      <div>
+    <div className="rounded-lg shadow p-4 flex justify-between gap-2 max-w-md border border-gray-200 w-full">
+      <div style={{ width: "inherit" }}>
         <Link href={`https://discord.com/users/${discordUser.id}`}>
           <div className="flex items-center mb-2 ml-2">
             <div className="relative">
@@ -112,8 +112,8 @@ function DiscordProfileCard({ userID }: { userID: string | undefined }) {
           </div>
         </Link>
         {/* Activity */}
-        {discordActivities.length > 0 ? (
-          <div>
+        {discordActivities.length > 0 && (
+          <div className="max-w-fit">
             {/* Playing */}
             {DiscordUtils.isPlayingActivity(discordActivities[0]) && (
               <div className="rounded-lg flex flex-col space-y-4 backdrop-blur-md bg-white/5 p-4 overflow-x-hidden">
@@ -197,27 +197,6 @@ function DiscordProfileCard({ userID }: { userID: string | undefined }) {
                   </div>
                 </div>
               )}
-          </div>
-        ) : (
-          <div className="rounded-lg flex flex-col space-y-2 backdrop-blur-md bg-white/5 p-4 overflow-x-hidden">
-            <div className="font-semibold">No activity</div>
-            <div className="flex space-x-4 items-center">
-              <Image
-                src={DiscordGameIcon}
-                width={80}
-                height={80}
-                alt="No activity"
-              />
-
-              <div className="space-y-px w-80">
-                <h1 className="font-semibold text-lg leading-tight truncate">
-                  Taking a nap
-                </h1>
-                <h2 className="leading-tight opacity-90 line-clamp-1">
-                  Zzzzz...
-                </h2>
-              </div>
-            </div>
           </div>
         )}
       </div>
