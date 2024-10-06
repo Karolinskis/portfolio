@@ -10,25 +10,25 @@ export const socialLinks = [
   {
     id: 1,
     name: "GitHub",
-    url: "https://github.com/Karolinskis",
+    url: "/github",
     icon: BiLogoGithub,
   },
   {
     id: 2,
     name: "LinkedIn",
-    url: "https://www.linkedin.com/in/karolis-paulavicius/",
+    url: "/linkedin",
     icon: BiLogoLinkedin,
   },
   {
     id: 3,
     name: "Discord",
-    url: "https://discord.com/users/213366470556516354",
+    url: "/discord",
     icon: BiLogoDiscord,
   },
   {
     id: 4,
     name: "Steam",
-    url: "https://steamcommunity.com/id/Karolinskiss/",
+    url: "/steam",
     icon: BiLogoSteam,
   },
   {
