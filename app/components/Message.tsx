@@ -26,7 +26,7 @@ export default function Message() {
       })
       .catch(function (error) {
         setError(error.response.data.responseBody.error.message);
-        console.error(error.response.data.responseBody.error.message);
+        console.error(error);
       });
 
     setMessageSending(false);

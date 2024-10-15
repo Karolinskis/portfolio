@@ -7,6 +7,56 @@ import {
   SpotifyActivity,
 } from "@/types/discord";
 
+export function initializeWebSocket(
+  userID: string,
+  onUpdate: (presence: any) => void
+) {
+  const ws = new WebSocket("wss://api.lanyard.rest/socket");
+
+  ws.onopen = () => {
+    console.log("Websocket connection opened");
+  };
+
+  ws.onmessage = (event) => {
+    const message = JSON.parse(event.data);
+
+    switch (message.op) {
+      case 1: // Hello
+        ws.send(
+          JSON.stringify({
+            op: 2,
+            d: {
+              subscribe_to_id: userID,
+            },
+          })
+        );
+        setInterval(() => {
+          ws.send(JSON.stringify({ op: 3 }));
+        }, message.d.heartbeat_interval);
+        break;
+
+      case 0: // Event
+        if (message.t === "INIT_STATE" || message.t === "PRESENCE_UPDATE") {
+          onUpdate(message.d);
+        }
+        break;
+
+      default:
+        console.error("Unknown opcode:", message.op);
+    }
+  };
+
+  ws.onerror = (error) => {
+    console.error("Websocket error:", error);
+  };
+
+  ws.onclose = () => {
+    console.log("Websocket connection closed");
+  };
+
+  return ws;
+}
+
 export const fetchDiscordProfile = async (
   userID: string
 ): Promise<DiscordProfileData> => {

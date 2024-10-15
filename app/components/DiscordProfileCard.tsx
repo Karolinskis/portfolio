@@ -34,20 +34,18 @@ function DiscordProfileCard({ userID }: { userID: string | undefined }) {
   const [elapsedTime, setElapsedTime] = useState("");
 
   useEffect(() => {
-    if (userID) {
-      DiscordUtils.fetchDiscordUserStatus(userID).then((data) =>
-        setDiscordUserStatus(data)
-      );
-      DiscordUtils.fetchDiscordUserProfile(userID).then((data) =>
-        setDiscordUser(data)
-      );
-      DiscordUtils.fetchDiscordActivities(userID).then((data) =>
-        setDiscordActivities(data)
-      );
-      DiscordUtils.fetchSpotifyActivity(userID).then((data) =>
-        setSpotifyActivity(data)
-      );
-    }
+    if (!userID) return;
+
+    const ws = DiscordUtils.initializeWebSocket(userID, (presence) => {
+      setDiscordUserStatus(presence.discord_status);
+      setDiscordUser(presence.discord_user);
+      setDiscordActivities(presence.activities || []);
+      setSpotifyActivity(presence.spotify || null);
+    });
+
+    return () => {
+      ws.close();
+    };
   }, [userID]);
 
   useEffect(() => {
