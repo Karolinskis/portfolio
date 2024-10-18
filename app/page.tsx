@@ -6,6 +6,7 @@ import DiscordProfileCard from "./components/DiscordProfileCard";
 import Contributions from "./components/sections/Contributions";
 import Socials from "./components/Socials";
 import PinnedRepositories from "./components/sections/PinnedRepositories";
+import Konami from "./components/Konami";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Socials />
       <PinnedRepositories />
       <Contributions />
+      <Konami />
     </div>
   );
 }
