@@ -47,6 +47,11 @@ export default function SnakeGame() {
   const [speed, setSpeed] = useState<number>(initialSpeed);
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [isStarted, setIsStarted] = useState<boolean>(false);
+  const [username, setUsername] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [leaderboard, setLeaderboard] = useState<
+    { username: string; score: number }[]
+  >([]);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const keyMapping: { [key: string]: string } = {
@@ -58,6 +63,36 @@ export default function SnakeGame() {
     s: "DOWN",
     a: "LEFT",
     d: "RIGHT",
+  };
+
+  useEffect(() => {
+    fetch("/api/leaderboard")
+      .then((res) => res.json())
+      .then((data) => setLeaderboard(data));
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      const response = await fetch("/api/leaderboard", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, score: score }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        setError(data.error || "Failed to submit score");
+      } else {
+        resetGame();
+      }
+    } catch (error) {
+      setError("Failed to submit score");
+    }
   };
 
   useEffect(() => {
@@ -207,23 +242,36 @@ export default function SnakeGame() {
           height={canvasHeight}
           className="border border-gray-200 dark:border-gray-800"
         />
-        {gameOver && (
+        {(gameOver || youWin) && (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50">
-            <div className="text-4xl text-red-600 mb-4">Game Over</div>
-            <Button
-              variant={"outline"}
-              className="hover:bg-gray-400 transition-colors duration-300"
-              onClick={resetGame}
+            {gameOver ? (
+              <div className="text-4xl text-red-600 mb-4">Game Over</div>
+            ) : (
+              <div className="text-4xl text-green-600 mb-4">You Win!</div>
+            )}
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col items-center"
             >
-              Restart
-            </Button>
-          </div>
-        )}
-        {youWin && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50">
-            <div className="text-4xl text-green-600 mb-4">You Win!</div>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter your username"
+                required
+                className="mb-4 p-2 border border-gray-300 rounded"
+              />
+              {error && <div className="text-red-500 mb-4">{error}</div>}
+              <Button
+                variant={"default"}
+                type="submit"
+                className="mb-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition-colors duration-300"
+              >
+                Submit Score
+              </Button>
+            </form>
             <Button
-              variant={"outline"}
+              variant={"secondary"}
               className="hover:bg-gray-400 transition-colors duration-300"
               onClick={resetGame}
             >
@@ -243,8 +291,37 @@ export default function SnakeGame() {
           </div>
         )}
       </div>
-      <div className="mt-4 text-gray-600">
-        Use arrow keys to move. Press space to pause/resume.
+
+      <div className="mt-4 flex flex-col justify-between h-full w-full max-w-xl p-6 border border-gray-200 rounded-lg shadow dark:border-gray-700">
+        <div className="flex justify-between items-center p-2 border-b border-gray-200 dark:border-gray-700">
+          <span className="text-gray-800 dark:text-gray-200 font-bold">
+            Ranking
+          </span>
+          <span className="text-gray-800 dark:text-gray-200 font-bold">
+            Name
+          </span>
+          <span className="text-gray-800 dark:text-gray-200 font-bold">
+            Score
+          </span>
+        </div>
+        <ul>
+          {leaderboard.map((entry, index) => (
+            <li
+              key={index}
+              className="flex justify-between items-center p-2 border-b border-gray-200 dark:border-gray-700 last:border-none"
+            >
+              <span className="text-gray-800 dark:text-gray-200 mr-4">
+                {index + 1}
+              </span>
+              <span className="text-gray-800 dark:text-gray-200 mr-4">
+                {entry.username}
+              </span>
+              <span className="text-blue-500 dark:text-blue-400">
+                {entry.score}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
