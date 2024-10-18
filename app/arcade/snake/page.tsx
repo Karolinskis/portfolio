@@ -4,7 +4,7 @@ import { Button } from "../../components/ui/button";
 
 const canvasWidth = 600;
 const canvasHeight = 600;
-const maxSpeed = 50;
+const maxSpeed = 100;
 const initialSpeed = 200;
 const snakeSize = 20;
 
@@ -65,11 +65,15 @@ export default function SnakeGame() {
     d: "RIGHT",
   };
 
-  useEffect(() => {
-    fetch("/api/leaderboard")
-      .then((res) => res.json())
-      .then((data) => setLeaderboard(data));
-  }, []);
+  const fetchLeaderboard = async () => {
+    try {
+      const response = await fetch("/api/leaderboard");
+      const data = await response.json();
+      setLeaderboard(data);
+    } catch (error) {
+      console.error("Failed to fetch leaderboard:", error);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,11 +93,16 @@ export default function SnakeGame() {
         setError(data.error || "Failed to submit score");
       } else {
         resetGame();
+        fetchLeaderboard();
       }
     } catch (error) {
       setError("Failed to submit score");
     }
   };
+
+  useEffect(() => {
+    fetchLeaderboard();
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
