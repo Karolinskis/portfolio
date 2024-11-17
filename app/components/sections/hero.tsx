@@ -36,14 +36,14 @@ export default function HeroContainer() {
       </div>
       <div className="hidden sm:block">
         <div className="relative inline-flex h-24 w-24 lg:h-32 lg:w-32">
-          <Image
-            src="/profile.jpg"
+          {/* <Image
+            src="/profile.png"
             alt="Karolis"
             width={256}
             height={256}
             className="rounded-full"
             loading="lazy"
-          />
+          /> */}
         </div>
       </div>
     </section>
