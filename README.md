@@ -4,13 +4,6 @@ Source code of my personal website.
 
 Built using [Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/), [TypeScript](https://www.typescriptlang.org/).
 
-Redirects:
-
-- https://karolisp.lt/github
-- https://karolisp.lt/discord
-- https://karolisp.lt/linkedin
-- https://karolisp.lt/steam
-
 ## Getting Started
 
 Setup environment variables:

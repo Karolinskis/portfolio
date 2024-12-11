@@ -22,6 +22,16 @@ module.exports = {
         destination: "https://steamcommunity.com/id/Karolinskiss/",
         permanent: true,
       },
+      {
+        source: "/twitter",
+        destination: "https://twitter.com/Karolinskiss",
+        permanent: true,
+      },
+      {
+        source: "/bluesky",
+        destination: "https://bsky.app/profile/karolinskis.bsky.social",
+        permanent: true,
+      },
     ];
   },
 };
