@@ -46,36 +46,37 @@ export async function POST(req: Request) {
   }
 
   try {
-    axios
-      .post(process.env.DISCORD_WEBHOOK_URL!, {
-        embeds: [
-          {
-            color: 3108090,
-            title: data.email,
-            author: {
-              name: req.headers.get("x-forwarded-for") ?? "Unknown",
-            },
-            description: data.message,
+    console.log("Sending message to Discord...", data);
+    const res = await axios.post(process.env.DISCORD_WEBHOOK_URL!, {
+      embeds: [
+        {
+          color: 3108090,
+          title: data.email,
+          author: {
+            name: req.headers.get("x-forwarded-for") ?? "Unknown",
           },
-        ],
-      })
-      .then((res) => {
-        if (res.data.err) {
-          const responseBody: MessageResponse = {
-            success: false,
-            error: {
-              message: res.data.err,
-              type: "discord_error",
-            },
-          };
-          return NextResponse.json({ responseBody }, { status: 400 });
-        }
+          description: data.message,
+        },
+      ],
+    });
 
-        return NextResponse.json({ success: true } as MessageResponse, {
-          status: 200,
-        });
-      });
+    if (res.data.err) {
+      const responseBody: MessageResponse = {
+        success: false,
+        error: {
+          message: res.data.err,
+          type: "discord_error",
+        },
+      };
+      return NextResponse.json({ responseBody }, { status: 400 });
+    }
+
+    console.log("Message sent to Discord.");
+    return NextResponse.json({ success: true } as MessageResponse, {
+      status: 200,
+    });
   } catch (error) {
+    console.error("Error sending message to Discord:", error);
     const responseBody: MessageResponse = {
       success: false,
       error: {
