@@ -22,7 +22,7 @@ export default function Contributions() {
 
   const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME;
   const githubCreatedAt = Number(process.env.NEXT_PUBLIC_GITHUB_CREATED_AT);
-  const years = getYearArray(githubCreatedAt);
+  const years = getYearArray(githubCreatedAt, -5);
 
   if (!username || !githubCreatedAt) {
     return (
@@ -51,8 +51,8 @@ export default function Contributions() {
         Contributions
       </h2>
 
-      <div className="flex flex-col gap-4">
-        <div className="border dark:border-gray-700 border-gray-200 shadow p-8 rounded-lg max-w-fit max-h-fit">
+      <div className="flex flex-col lg:flex-row gap-4 items-start">
+        <div className="border dark:border-gray-700 border-gray-200 shadow p-8 rounded-lg w-full lg:max-w-[calc(100%-6rem)]">
           <GitHubCalendar
             username={username}
             year={calendarYear}
@@ -60,13 +60,14 @@ export default function Contributions() {
             blockSize={14}
           />
         </div>
-        <div className="flex justify-end flex-row gap-3 overflow-x-auto max-w-full">
+        <div className="flex-shrink-0 flex flex-row lg:flex-col gap-3 w-20">
           {years.map((year) => (
             <Button
               key={year}
               onClick={() => setCalendarYear(year)}
               variant={"outline"}
               className="hover:bg-gray-400 transition-colors duration-300"
+              title={`View contributions for year ${year}`}
             >
               {year}
             </Button>
