@@ -1,12 +1,9 @@
 import {
   BiLogoDiscord,
   BiLogoGithub,
-  BiLogoLinkedin,
-  BiLogoSteam,
   BiLogoTwitter,
 } from "react-icons/bi";
 import { FaBluesky } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
 
 export const socialLinks = [
   {
@@ -14,12 +11,6 @@ export const socialLinks = [
     name: "GitHub",
     url: "/github",
     icon: BiLogoGithub,
-  },
-  {
-    id: 2,
-    name: "LinkedIn",
-    url: "/linkedin",
-    icon: BiLogoLinkedin,
   },
   {
     id: 3,
@@ -38,11 +29,5 @@ export const socialLinks = [
     name: "Bluesky",
     url: "/bluesky",
     icon: FaBluesky,
-  },
-  {
-    id: 6,
-    name: "Email",
-    url: "mailto:karolis.paulavicius2002@gmail.com",
-    icon: MdEmail,
   },
 ];

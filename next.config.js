@@ -8,11 +8,6 @@ module.exports = {
         permanent: true,
       },
       {
-        source: "/linkedin",
-        destination: "https://www.linkedin.com/in/karolis-paulavicius/",
-        permanent: true,
-      },
-      {
         source: "/discord",
         destination: "https://discord.com/users/213366470556516354",
         permanent: true,
